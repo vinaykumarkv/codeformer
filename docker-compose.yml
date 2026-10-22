@@ -1,0 +1,16 @@
+services:
+  api:
+    build: .
+    image: codeformer:latest
+    ports:
+      - "8000:8000"
+    environment:
+      CODEFORMER_CHECKPOINT: /models/model.pt
+      CODEFORMER_FEEDBACK: /data/feedback.jsonl
+    volumes:
+      - ./artifacts:/models:ro      # put model.pt here (from `codeformer train`)
+      - feedback:/data              # realtime (predictor_text, output_text) pairs
+    restart: unless-stopped
+
+volumes:
+  feedback:

@@ -1,0 +1,29 @@
+# Default configuration. Every key is optional; omitted keys use dataclass defaults.
+data:
+  n_levels: 6          # number of hierarchy levels: L1..L6
+  delimiter: "-"       # separator used when codes are stored as one string "A-B-C-D-E-F"
+  min_freq: 1          # min frequency for a text token to enter the vocab
+  lowercase: true
+
+model:
+  n_layers: 4
+  n_heads: 4
+  d_model: 128
+  d_ff: 512
+  max_seq_len: 64
+  dropout: 0.1
+  n_future: 6          # multi-token prediction heads (>= n_levels enables 1-pass parallel decoding)
+  aux_loss_weight: 0.5 # weight for heads that predict t+2 ... t+n_future
+
+train:
+  epochs: 15
+  batch_size: 64
+  lr: 0.0005
+  weight_decay: 0.01
+  warmup_ratio: 0.05
+  grad_clip: 1.0
+  seed: 42
+  num_workers: 0
+  mixed_precision: false
+  early_stopping_patience: 4
+  log_every: 50
