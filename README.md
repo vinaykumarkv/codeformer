@@ -1,7 +1,7 @@
 # codeformer
 
 A GPT-style (decoder-only) transformer that reads **text** and predicts a **structured
-sequence of custom tokens** — e.g. a six-level location code `L1-L2-L3-L4-L5-L6` — instead of
+sequence of custom tokens** — e.g. a six-level hierarchial code `L1-L2-L3-L4-L5-L6` — instead of
 one word at a time.
 
 ```
@@ -35,7 +35,7 @@ one word at a time.
 15. [Design notes and limitations](#design-notes-and-limitations)
 
 ---
-
+![alt text](Architecture_Codeformer.png)
 ## How it works
 
 ### Sequence layout
