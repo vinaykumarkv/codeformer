@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1.7
 
 # ---------- builder: resolve dependencies into a relocatable venv ----------
-FROM python:3.11-slim AS builder
+FROM python:3.15-slim AS builder
 ENV PIP_NO_CACHE_DIR=1 PIP_DISABLE_PIP_VERSION_CHECK=1
 RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
@@ -14,7 +14,7 @@ COPY src ./src
 RUN pip install ".[serve]"
 
 # ---------- runtime: minimal, non-root ----------
-FROM python:3.11-slim AS runtime
+FROM python:3.15-slim AS runtime
 RUN useradd --create-home --uid 10001 app \
  && mkdir -p /models /data && chown app:app /models /data
 COPY --from=builder /opt/venv /opt/venv
